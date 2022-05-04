@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Switch, Route } from 'react-router-dom';
-import './stylesheets/styles.scss';
+// import './stylesheets/styles.scss';
 
 class App extends Component {
   //create state here
@@ -36,10 +36,11 @@ class App extends Component {
   render() {
     return (
       // <div className="router">
+      //   <p>Hello</p>
       //   <main>
       //     <Switch>
       //       {/* <Route path="/" component={() => <plantsContainer id={plantsContainer} />}/> */}
-      //       <Route path='/' component={plantsContainer}/>
+      //       <Route path='/' component={PlantsContainer}/>
       //     </Switch>
       //   </main>
       // </div>
@@ -52,19 +53,25 @@ class App extends Component {
 };
 
 
-class PlantsContainer extends React.Component {
+class PlantsContainer extends Component {
   //creat const plants []
   
   //render 
+  render() {
     //creat const plants []
     //using for loop to iterate through state
       //push plant to plants id={i}
     //return
       //h1 Outdoor Plants
       //div {plants} div
+    return (
+      <Plant />
+    )
+  }
+    
 }
 
-class Plant extends React.Component {
+class Plant extends Component {
   render() {
     // return (
       //div class=plant onClick=this.flip use e.target.id? to access plant id
@@ -77,6 +84,11 @@ class Plant extends React.Component {
          //button edit
          //button diary
     // );
+    return (
+      <div>
+        <p>Moonlight in Paris</p>
+      </div>
+    )
   }
 }
 
