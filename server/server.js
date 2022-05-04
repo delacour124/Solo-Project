@@ -1,14 +1,25 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 
 const PORT = 3000;
 
 //import controller
-const plantsController = './controllers/plantsController';
+const plantsController = require('./controllers/plantsController');
 
 //connect to database here?
+const MONGO_URI = 'mongodb+srv://delacour124:codesmith50@cluster0.ytvxp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
+mongoose.connect(MONGO_URI, {
+  // options for the connect method to parse the URI
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  // sets the name of the DB that our collections are part of
+  dbName: 'Garden'
+  })
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch(err => console.log(err));
 
 
 
@@ -16,11 +27,16 @@ const plantsController = './controllers/plantsController';
 app.use(express.json());
 
 //serve html page
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
-})
+// app.get('/', (req, res) => {
+//   return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+// })
+app.use(express.static(path.resolve(__dirname, '../client')));
 
-//when request to '/plants', invoke controller middleware, send back response
+//when request to '/', invoke controller middleware, send back response
+app.get('/', plantsController.getPlants, (req, res) => {
+  console.log('im invoked');
+  return res.status(200).json(res.locals.plants);
+});
 
 //handle all route error
 app.use((req, res) => res.sendStatus(404));
