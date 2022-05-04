@@ -35,20 +35,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="router">
-        <main>
-          <Switch>
-            {/* <Route path="/" component={() => <plantsContainer id={plantsContainer} />}/> */}
-            <Route path='/' component={plantsContainer}}/>
-          </Switch>
-        </main>
+      // <div className="router">
+      //   <main>
+      //     <Switch>
+      //       {/* <Route path="/" component={() => <plantsContainer id={plantsContainer} />}/> */}
+      //       <Route path='/' component={plantsContainer}/>
+      //     </Switch>
+      //   </main>
+      // </div>
+      <div id='plantsContainer'>
+        <PlantsContainer />
       </div>
+
     )
   }
 };
 
 
-class plantsContainer extends React.Component {
+class PlantsContainer extends React.Component {
   //creat const plants []
   
   //render 
@@ -62,7 +66,7 @@ class plantsContainer extends React.Component {
 
 class Plant extends React.Component {
   render() {
-    return (
+    // return (
       //div class=plant onClick=this.flip use e.target.id? to access plant id
         //div class=frount
           //img src=imgURL alt=name
@@ -72,7 +76,7 @@ class Plant extends React.Component {
          //li fragrance
          //button edit
          //button diary
-    );
+    // );
   }
 }
 

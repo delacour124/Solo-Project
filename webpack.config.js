@@ -6,7 +6,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    publickPath: '/',
+    publicPath: '/',
     filename: 'bundle.js',
   },
   devServer: {
@@ -18,7 +18,7 @@ module.exports = {
       '/api': 'http://localhost:3000',
     }
   },
-  modules: {
+  module: {
     rules: [
       {
         test: /\.jsx?/,
@@ -41,6 +41,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './index.html' })
+    new HtmlWebpackPlugin({ template: './client/index.html' })
   ],
 }
