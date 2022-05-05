@@ -15,57 +15,49 @@ class App extends Component {
       imgURL: [],
       // dataFetched: false
     }
+  }
     //functions
     //flip plant card
       //this.flip = () => {
         //selectClassPlant.toggleClass('flipped')
-      }
+      // }
   
   // compnentDidMount to update state by fetch data from server
   //   fetch plants from server 
   //   update state using setState
   //   catch error
-  // componentDidMount() {
-  //   // useEffect() {
-  //   fetch('/api')
-  //     .then(data => data.json())
-  //     .then(data => {
-  //       console.log('this is fetched data', data);
-  //       for (let i = 0; i < data.length; i++) {
-  //         this.setState(prevState => {
-  //           prevState.name.push(data[i].name);
-  //           prevState.imgURL.push(data[i].imgURL);
-  //           prevState.dataFetched = true;
-  //         });
-  //       }
-  //       console.log('this is state', this.state);
-  //     })
-  //     .catch(err => {console.log(`Error occured in componentDidMount getting plants, ERROR: ${err}`)});
-  // }
-
-  // //try async await fetch
   componentDidMount() {
-    async function fetchData() {
-      // useEffect() {
-      try {
-        const rawData = await fetch('/api');
-        const data = await rawData.json();
+    // useEffect() {
+    fetch('/api')
+      .then(data => data.json())
+      .then(data => {
+        console.log('this is fetched data', data);
         for (let i = 0; i < data.length; i++) {
           this.setState(prevState => {
             prevState.name.push(data[i].name);
             prevState.imgURL.push(data[i].imgURL);
-            // prevState.dataFetched = true;
+            prevState.dataFetched = true;
           });
         }
         console.log('this is state', this.state);
-      }
-      catch(err) {
-        throw err;
-        console.log(err);
-      }
-    }
-    fetchData();
-  };
+      })
+      .catch(err => {console.log(`Error occured in componentDidMount getting plants, ERROR: ${err}`)});
+  }
+
+  // //try async await fetch
+  // async componentDidMount() {
+  //       const rawData = await fetch('/api');
+  //       const data = await rawData.json();
+  //       console.log('fetched!');
+  //       for (let i = 0; i < data.length; i++) {
+  //         this.setState(prevState => {
+  //           prevState.name.push(data[i].name);
+  //           prevState.imgURL.push(data[i].imgURL);
+  //           // prevState.dataFetched = true;
+  //         });
+  //       }
+  //       console.log('this is state', this.state);
+  // };
   
 
   render() {
@@ -99,7 +91,7 @@ class PlantsContainer extends Component {
     
     //creat const plants []
     const plants = [];
-    //using for loop to iterate through state
+    // using for loop to iterate through state
     console.log('this is name', this.props.state.name);
     console.log('length', this.props.state.name.length);
     for (let i = 0; i < this.props.state.name.length; i++) {
@@ -108,6 +100,19 @@ class PlantsContainer extends Component {
       console.log('name', this.props.state.name[i]);
       plants.push(<Plant key={i} name={this.props.state.name[i]}/>);
     }
+
+    //try setTimeout? plant not rendered
+    // setTimeout(() => {
+    //   console.log('this is name', this.props.state.name);
+    //   console.log('length', this.props.state.name.length);
+    //   for (let i = 0; i < this.props.state.name.length; i++) {
+    //     //push plant to plants id={i}
+    //     console.log('in the loop', i);
+    //     console.log('name', this.props.state.name[i]);
+    //     plants.push(<Plant key={i} name={this.props.state.name[i]}/>);
+    //   }
+    // }, 1000);
+
     // return (
       // <div id='plantCard'>
       //   <h2>Outdoor Plants</h2>
@@ -136,9 +141,11 @@ class Plant extends Component {
          //button diary
     // );
     // let imgSrc = require(`../docs/${this.props.name}`).default;
+    console.log('this.pros.name', this.props.name);
     return (
       <div>
         <p>{this.props.name}</p>
+        <p>moonlight</p>
         {/* <p>{this.props.imgURL}</p> */}
         {/* <img src={require(this.props.imgSrc).default}/> */}
         {/* <img src={require(this.props.imgURL).default}/> */}
