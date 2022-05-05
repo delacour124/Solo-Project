@@ -13,7 +13,7 @@ module.exports = {
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'build'),
-      publicPath: '/build',
+      publicPath: '/',
     },
     proxy: {
       '/api': 'http://localhost:3000',

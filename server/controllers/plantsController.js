@@ -19,11 +19,11 @@ plantsController.getPlants = (req, res, next) => {
     }));
 };
 
-plantsController.sayHi = (req, res, err) => {
-  console.log('sayHi invoked');
-  res.locals.hi = "hi";
-  return next();
-}
+// plantsController.sayHi = (req, res, err) => {
+//   console.log('sayHi invoked');
+//   res.locals.hi = "hi";
+//   return next();
+// }
 
 //exports plantsController
 module.exports = plantsController;

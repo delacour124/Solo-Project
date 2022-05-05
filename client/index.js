@@ -6,9 +6,9 @@ import App from './App.jsx';
 import styles from './stylesheets/styles.scss';
 
 render(
-  // <BrowserRouter>
-  //   <App />
-  // </BrowserRouter>,
-  <App />,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  // <App />,
   document.getElementById('app'),
 );

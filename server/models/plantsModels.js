@@ -18,14 +18,14 @@ const mongoose = require('mongoose');
   //create plantsSchema
   const plantsSchema = new Schema({
     name: { type: String, require: true },
-    imgPath: String 
+    imgPath: { data: Buffer, contentType: String }
   })
 
   //create plants collection
-  const plants = mongoose.model('Plants', plantsSchema);
+  const Plants = mongoose.model('Plants', plantsSchema);
 
   //export plantsSchema as Plants
   module.exports = {
-    plants
+    Plants
     //may add more collections
   };
