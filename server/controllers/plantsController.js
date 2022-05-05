@@ -10,7 +10,14 @@ plantsController.getPlants = (req, res, next) => {
   models.Plants.find({})
     .then(data => {
       console.log(data);
-      res.locals.plants = data;
+      // res.locals.plants = data;
+      res.locals.name = [];
+      res.locals.imgURL = [];
+      for (let i = 0; i < data.length; i++) {
+        res.locals.name.push(data[i].name);
+        res.locals.imgURL.push(data[i].imgURL);
+      }
+      
       return next();
     })
     .catch(err => next({

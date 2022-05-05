@@ -13,7 +13,7 @@ class App extends Component {
       //what property to put in state
       name: [],
       imgURL: [],
-      // dataFetched: false
+      dataFetched: false
     }
   }
     //functions
@@ -32,13 +32,17 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         console.log('this is fetched data', data);
-        for (let i = 0; i < data.length; i++) {
-          this.setState(prevState => {
-            prevState.name.push(data[i].name);
-            prevState.imgURL.push(data[i].imgURL);
-            prevState.dataFetched = true;
-          });
-        }
+        // for (let i = 0; i < data.length; i++) {
+        //   const fetchedName = [];
+        //   const fetchedImgURL = [];
+        //   fetchedName.push(data[i].name);
+        //   fetchedImgURL.push(data[i].imgURL);
+        // }
+        this.setState({
+          name: data.name,
+          imgURL: data.imgURL,
+          dataFetched: true
+        })
         console.log('this is state', this.state);
       })
       .catch(err => {console.log(`Error occured in componentDidMount getting plants, ERROR: ${err}`)});
@@ -83,11 +87,11 @@ class PlantsContainer extends Component {
   //render 
   render() {
     //check if data fetched
-    // if (!this.props.state.dataFetched) return (
-    //   <div>
-    //     <h1>Loading data, please wait...</h1>
-    //   </div>
-    // );
+    if (!this.props.state.dataFetched) return (
+      <div>
+        <h1>Loading data, please wait...</h1>
+      </div>
+    );
     
     //creat const plants []
     const plants = [];
@@ -96,22 +100,9 @@ class PlantsContainer extends Component {
     console.log('length', this.props.state.name.length);
     for (let i = 0; i < this.props.state.name.length; i++) {
       //push plant to plants id={i}
-      console.log('in the loop', i);
-      console.log('name', this.props.state.name[i]);
-      plants.push(<Plant key={i} name={this.props.state.name[i]}/>);
+      console.log('imgURL', this.props.state.imgURL[i]);
+      plants.push(<Plant key={i} class='plantCard' name={this.props.state.name[i]} imgURL={this.props.state.imgURL[i]}/>);
     }
-
-    //try setTimeout? plant not rendered
-    // setTimeout(() => {
-    //   console.log('this is name', this.props.state.name);
-    //   console.log('length', this.props.state.name.length);
-    //   for (let i = 0; i < this.props.state.name.length; i++) {
-    //     //push plant to plants id={i}
-    //     console.log('in the loop', i);
-    //     console.log('name', this.props.state.name[i]);
-    //     plants.push(<Plant key={i} name={this.props.state.name[i]}/>);
-    //   }
-    // }, 1000);
 
     // return (
       // <div id='plantCard'>
@@ -140,15 +131,17 @@ class Plant extends Component {
          //button edit
          //button diary
     // );
-    // let imgSrc = require(`../docs/${this.props.name}`).default;
-    console.log('this.pros.name', this.props.name);
+    //helper function to generate img src
+    const getImgSrc = name => {
+      return require(`../docs/${name}.jpeg`).default;
+    }
+    console.log('this.props.src', this.props.src);
     return (
       <div>
         <p>{this.props.name}</p>
-        <p>moonlight</p>
-        {/* <p>{this.props.imgURL}</p> */}
-        {/* <img src={require(this.props.imgSrc).default}/> */}
+        <img src={getImgSrc(this.props.name)}/>
         {/* <img src={require(this.props.imgURL).default}/> */}
+        {/* <img src={require('../docs/kent.jpeg').default}/> */}
         
       </div>
     )

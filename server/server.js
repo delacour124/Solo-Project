@@ -27,8 +27,7 @@ app.use(express.json());
 
 //when request to '/', invoke controller middleware, send back response
 app.get('/api', plantsController.getPlants, (req, res) => {
-  console.log('im invoked');
-  return res.status(200).json(res.locals.plants);
+  return res.status(200).json(res.locals);
 });
 
 

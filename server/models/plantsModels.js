@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
   //create plantsSchema
   const plantsSchema = new Schema({
     name: { type: String, require: true },
-    imgPath: { data: Buffer, contentType: String }
+    imgURL: { type: String, require: true }
   })
 
   //create plants collection
