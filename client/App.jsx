@@ -15,12 +15,17 @@ class App extends Component {
       imgURL: [],
       dataFetched: false
     }
+    //bind flipCard function here
+    this.flipCard = this.flipCard.bind(this);
   }
-    //functions
-    //flip plant card
-      //this.flip = () => {
-        //selectClassPlant.toggleClass('flipped')
-      // }
+  //functions
+  //flip plant card
+    //this.flip = () => {
+      //selectClassPlant.toggleClass('flipped')
+    // }
+  flipCard(id) {
+    document.selectById(id).toggleClass('flipped');
+  }
   
   // compnentDidMount to update state by fetch data from server
   //   fetch plants from server 
@@ -66,18 +71,9 @@ class App extends Component {
 
   render() {
     return (
-      // <div className="router">
-      //   <p>Hello</p>
-      //   <main>
-      //     <Switch> 
-      //       <Route path="/" component={() => <plantsContainer id={plantsContainer} />}/> 
-      //       <Route id='plangtsContainer' path='/' component={PlantsContainer}/> 
-      //     </Switch>
-      //   </main>
+      // <div>
+        <PlantsContainer state={this.state} flipCard={this.flipCard}/>
       // </div>
-      <div id='plantsContainer'>
-        <PlantsContainer state={this.state}/>
-      </div>
     )
   }
 };
@@ -101,17 +97,13 @@ class PlantsContainer extends Component {
     for (let i = 0; i < this.props.state.name.length; i++) {
       //push plant to plants id={i}
       console.log('imgURL', this.props.state.imgURL[i]);
-      plants.push(<Plant key={i} class='plantCard' name={this.props.state.name[i]} imgURL={this.props.state.imgURL[i]}/>);
+      plants.push(<Plant key={i} name={this.props.state.name[i]} imgURL={this.props.state.imgURL[i]} flipCard={this.props.flipCard}/>);
     }
-
-    // return (
-      // <div id='plantCard'>
-      //   <h2>Outdoor Plants</h2>
-      //   <Plant name={this.state.name[0]}/>
-      // </div>
     return (
-      <div id='plantCard'>
-        <h2>Outdoor Plants</h2>
+      // <div>
+      //   <h2>Outdoor Plants</h2>
+      // </div>
+      <div id='plantsContainer'>
         {plants}
       </div>
     )
@@ -132,18 +124,26 @@ class Plant extends Component {
          //button diary
     // );
     //helper function to generate img src
-    const getImgSrc = name => {
-      return require(`../docs/${name}.jpeg`).default;
+    const getImgSrc = imgName => {
+      return require(`../docs/${imgName}`).default;
     }
-    console.log('this.props.src', this.props.src);
+    console.log('this.props.imgURL', this.props.imgURL);
     return (
-      <div>
-        <p>{this.props.name}</p>
-        <img src={getImgSrc(this.props.name)}/>
-        {/* <img src={require(this.props.imgURL).default}/> */}
-        {/* <img src={require('../docs/kent.jpeg').default}/> */}
+      <article class='plantCard' onclike={e => this.props.flipCard(e.target.key)}>
+        <div class='plantImg'>
+          <img src={getImgSrc(this.props.imgURL)}/>
+        </div>
+        <div class='plantName'>
+          <h3>{this.props.name}</h3>
+        </div>
         
-      </div>
+        {/* <div class='front'>
+          <img src={getImgSrc(this.props.imgURL)}/>
+        </div>
+        <div class='back'>
+          <h3 class='plantName'>{this.props.name}</h3>
+        </div> */}
+      </article>
     )
   }
 }

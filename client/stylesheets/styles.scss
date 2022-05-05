@@ -1,22 +1,133 @@
+html {
+  font-size: 1.5vw;
+}
+
 body {
-  background-color: rgb(134, 199, 175);
+  text-align: center;
+  // background-color: rgb(134, 199, 175);
+  background-color: #8eb897;
+  background-image: url('backgroundRed.jpeg');
+  header {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+  }
+  h1 {
+    font-family: 'Caveat', cursive;
+    color: #503d3f;
+    font-size: 100px;
+    font-weight: 300;
+    align-self: center;
+  }
+}
+
+app {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  position: relative;
 }
 
 #plantsContainer {
-  width: 1000px;
-  height: 700px;
-  border: 5px solid black;
+  // width: 1000px;
+  // height: 700px;
+  position: absolute;
+  left: 5%;
+  align-items: center;
+  width: 90%;
+  display: grid;
+  // grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+  flex-wrap: wrap;
+  align-items: flex-start;
+  border: 5px solid #664e4c;
+  // perspective: 1000px;
 }
 
-#plant {
-  width: 300px;
-  height: 400px;
-  border: 2px solid black;
+.plantCard {
+  // width: 300px;
+  // height: 400px;
+  // display: flex;
+  // flex-direction: column;
+  width: auto;
+  border: 2px solid #664e4c;
+  // box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  // position:  absolute;
+  // transition: transform 1s;
+  // transform-style: preserve-3d;
+  // backface-visibility: hidden;
+  .plantImg {
+    align-self: center;
+    
+  }
+  .plantName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    align-self: center;
+    background-color: rgb(241, 241, 233);
+    h3 {
+      align-self: center;
+      // flex-wrap: wrap;
+      height: 100%;
+      //font
+    }
+  }
 }
 
+// .plantCard .frount {
 
+// }
+
+// .plantCard .back {
+//   transform: rotateY(180deg);
+// }
+
+// .plantCard .flipped {
+//   transform: rotateY(180deg);
+// }
 
 img {
-  width: 100%;
+  // max-width: 100%;
+  max-width: 100%;
   height: auto;
+}
+
+@media only screen and (max-width: 1420px) and (min-width:856px) {
+  .charContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+  }
+  .charCard {
+    flex-grow: 1;
+  }
+}
+
+
+@media only screen and (max-width: 855px) and (min-width:576px) {
+  html {
+    font-size: 2.2vw;
+  }
+  .charContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+  }
+  .charCard {
+    flex-grow: 1;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 7.5vw;
+  }
+  .charContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+  }
+  .charCard {
+    flex-grow: 1;
+  }
 }
