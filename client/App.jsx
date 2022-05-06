@@ -135,6 +135,7 @@ class Plant extends Component {
         </div>
         <div class='plantName'>
           <h3>{this.props.name}</h3>
+          <button type="button" class='journalButton'>Growth Journals</button>
         </div>
         
         {/* <div class='front'>
