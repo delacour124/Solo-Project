@@ -35,7 +35,7 @@ app.get('/api', plantsController.getPlants, (req, res) => {
 // app.get('/', (req, res) => {
 //   return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 // })
-app.use('/api', express.static(path.resolve(__dirname, '../client')));
+app.use(express.static(path.resolve(__dirname, '../client')));
 
 
 
